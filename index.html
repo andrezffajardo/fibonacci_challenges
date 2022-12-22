@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fibonacci Challenges</title>
+  <style>
+    #input {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    section {
+      border: 2px solid #003580;
+      padding: 30px;
+      margin: 20px;
+    }
+    pre {
+      margin-left: 300px;
+    }
+    h2, h1 {
+      text-align: center;
+    }
+    p {
+      margin: 10px;
+    }
+    /* CSS */
+  </style>
+</head>
+<body>
+  <h1>Fibonacci Challenges</h1>
+  <div id="container">
+    <section id="challenge1">
+      <h2>Challenge 1: the function must not exceed O(n) in time complexity.</h2>
+      <pre>
+      function fibonacciChallenge1(n) {
+        // If n is less than 2, return the value of n
+        if (n<2) return n;
+        // Create an array with the first two terms of the Fibonacci sequence
+        let values = [0, 1];
+        // Loop that runs from index 2 to n
+        for (let i = 2; i <= n; i++) {
+          // Calculate the next term of the sequence as the sum of the previous two
+          // and add it to the values array
+          values.push(values[i - 1] + values[i - 2]);
+        }
+        // Return the last term of the sequence,
+        //which is the element at position n in the values array
+        return values[n];
+      }
+      </pre>
+      <div id="input">
+        <p>Enter a number:</p>
+        <input type="number" id="input1">
+        <button onclick="calculateChallenge1()">Calculate</button>
+        <p>Fibonacci Result:</p>
+        <p id="result1"></p>
+      </div>
+    </section>
+    <section id="challenge2">
+      <h2>Challenge 2: the function must be recursive.</h2>
+      <pre>
+        function fibonacciChallenge2(n) {
+            //If n is less than 2, return the value of n
+            if (n<2) return n;
+            //Calculate the (n - 1) element of the Fibonacci sequence
+            let n1 = fibonacciChallenge2(n - 1);//2
+            //Calculate the (n - 2) element of the Fibonacci sequence
+            let n2 = fibonacciChallenge2(n - 2);//1
+
+            return n1 + n2;
+          }
+        }
+      </pre>
+      <div id="input">
+        <p>Enter a number:</p>
+        <input type="number" id="input2">
+        <button onclick="calculateChallenge2()">Calculate</button>
+        <p>Fibonacci Result:</p>
+        <p id="result2"></p>
+      </div>
+    </section>
+    <section id="challenge3">
+      <h2>Challenge 3: the function must be iterative.</h2>
+      <pre>
+        function fibonacciChallenge3(n) {
+          // If n is less than 2, return n
+          if (n<2) return n;
+          // Declare variables and assign initial values to current and previous
+          let current = 0;
+          let previous = 1;
+          let next;
+          // Start a loop that iterates from the 2nd to the nth term of the sequence
+          for (let i = 2; i <= n; i++) {
+            next = current + previous;
+            current = previous;
+            previous = next;
+          }
+          // Return the value of next, which is the nth term of the Fibonacci sequence
+          return next;
+        }
+      </pre>
+      <div id="input">
+        <p>Enter a number:</p>
+        <input type="number" id="input3">
+        <button onclick="calculateChallenge3()">Calculate</button>
+        <p>Fibonacci Result:</p>
+        <p id="result3"></p>
+      </div>
+    </section>
+    <section id="challenge4">
+      <h2>Challenge 4: Global variables are not allowed, but the use of high level functions or closures is.</h2>
+      <pre>
+        function fibonacciChallenge4() {
+          let first = 0;
+          let second = 0;
+          // This anonymous function, when called, will return the next number in the Fibonacci sequence
+          return function() {
+            // If this is the first time the anonymous function is called, set first and second to 1 and return 0
+            if (first === 0) {
+              first = 1;
+              second = 1;
+              return 0;
+            }
+            // Otherwise, return the value of first, set first to the value of second, and set second to the sum of first and second
+            else {
+              const current = first;
+              const firstc = second;
+              second = first + second;
+              first = firstc;
+              return current;
+            }
+          };
+        }
+      </pre>
+      <div id="input">
+        <p>Enter a number:</p>
+        <input type="number" id="input4">
+        <button onclick="calculateChallenge4()">Calculate</button>
+        <p>Fibonacci Result:</p>
+        <p id="result4"></p>
+      </div>
+    </section>
+    <section id="challenge5">
+      <h2>Challenge 5: Define the Eneacci function </h2>
+      <pre>
+        function eneacci(n, baseCases) {
+          // If n is less than the length of baseCases, the desired term is already present in the array,
+          // and return that value.
+          if (n < baseCases.length) return baseCases[n];
+          // Initialize a sum variable to 0.
+          let sum = 0;
+          // Loop from i = 1 to i = baseCases.length.
+          for (let i = 1; i <= baseCases.length; i++) {
+            // On each iteration, calculate the (n - i)th term of the Fibonacci series using recursion
+            // and add it to the sum.
+            sum += eneacci(n - i, baseCases);
+          }
+          // Return the sum of all the terms calculated in the loop.
+          return sum;
+        }
+      </pre>
+      <div id="input">
+        <p>Enter a number:</p>
+        <input type="number" id="input5">
+        <button onclick="calculateChallenge5()">Calculate</button>
+        <p>Fibonacci Result:</p>
+        <p id="result5"></p>
+      </div>
+    </section>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
